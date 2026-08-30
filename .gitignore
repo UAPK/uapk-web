@@ -1,0 +1,14 @@
+# Laufzeit- und Geheimnisartefakte gehoeren nie ins Repo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+venv/
+.venv/
+node_modules/
+__pycache__/
+.next/
+dist/
+build/
+*.log

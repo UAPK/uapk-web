@@ -1,0 +1,8 @@
+cell_id: C-12
+name: uapk-web
+org: UAPK
+gcp_project: uapk-web-prod
+ports: "9110-9119"
+uapk_sibling: null
+state_path: /srv/state/uapk-web/
+runtime_plane: projects-vm
