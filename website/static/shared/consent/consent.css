@@ -1,0 +1,377 @@
+/**
+ * Privacy-First Consent Manager - Styles
+ * Lightweight, accessible, themeable
+ *
+ * @version 1.0.0
+ */
+
+/* ============================================
+   CSS Variables for Easy Theming
+   ============================================ */
+
+:root {
+  /* Light theme (default) */
+  --consent-bg: #ffffff;
+  --consent-text: #333333;
+  --consent-border: #e0e0e0;
+  --consent-shadow: rgba(0, 0, 0, 0.1);
+  --consent-accent: #2563eb;
+  --consent-accent-hover: #1d4ed8;
+  --consent-link: #2563eb;
+  --consent-link-hover: #1d4ed8;
+
+  /* Spacing */
+  --consent-padding: 1.25rem;
+  --consent-gap: 1rem;
+  --consent-border-radius: 0.5rem;
+
+  /* Typography */
+  --consent-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --consent-font-size-base: 0.9375rem;
+  --consent-font-size-title: 1rem;
+  --consent-line-height: 1.5;
+
+  /* Animation */
+  --consent-transition: all 0.3s ease;
+  --consent-slide-distance: 1rem;
+
+  /* Z-index */
+  --consent-z-index: 9999;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --consent-bg: #1f2937;
+  --consent-text: #f3f4f6;
+  --consent-border: #374151;
+  --consent-shadow: rgba(0, 0, 0, 0.3);
+  --consent-accent: #3b82f6;
+  --consent-accent-hover: #2563eb;
+  --consent-link: #60a5fa;
+  --consent-link-hover: #3b82f6;
+}
+
+/* Auto theme - follows system preference */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --consent-bg: #1f2937;
+    --consent-text: #f3f4f6;
+    --consent-border: #374151;
+    --consent-shadow: rgba(0, 0, 0, 0.3);
+    --consent-accent: #3b82f6;
+    --consent-accent-hover: #2563eb;
+    --consent-link: #60a5fa;
+    --consent-link-hover: #3b82f6;
+  }
+}
+
+/* ============================================
+   Screen Reader Only
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================
+   Banner Container
+   ============================================ */
+
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: var(--consent-z-index);
+
+  /* Initial state - hidden */
+  opacity: 0;
+  transform: translateY(var(--consent-slide-distance));
+  transition: var(--consent-transition);
+  pointer-events: none;
+
+  /* Styling */
+  background: var(--consent-bg);
+  color: var(--consent-text);
+  border-top: 1px solid var(--consent-border);
+  box-shadow: 0 -2px 16px var(--consent-shadow);
+
+  font-family: var(--consent-font-family);
+  font-size: var(--consent-font-size-base);
+  line-height: var(--consent-line-height);
+}
+
+/* Bottom position (default) */
+.consent-banner[data-position="bottom"] {
+  bottom: 0;
+  transform: translateY(var(--consent-slide-distance));
+}
+
+/* Top position */
+.consent-banner[data-position="top"] {
+  top: 0;
+  bottom: auto;
+  border-top: none;
+  border-bottom: 1px solid var(--consent-border);
+  transform: translateY(calc(-1 * var(--consent-slide-distance)));
+}
+
+/* Visible state */
+.consent-banner--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ============================================
+   Banner Layout
+   ============================================ */
+
+.consent-banner__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--consent-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--consent-gap);
+  flex-wrap: wrap;
+}
+
+.consent-banner__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex: 1 1 auto;
+  min-width: 0; /* Allow text truncation */
+}
+
+.consent-banner__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.consent-banner__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.consent-banner__title {
+  display: block;
+  font-weight: 600;
+  font-size: var(--consent-font-size-title);
+  margin: 0 0 0.25rem 0;
+}
+
+.consent-banner__message {
+  margin: 0;
+  color: var(--consent-text);
+  opacity: 0.9;
+}
+
+/* ============================================
+   Actions
+   ============================================ */
+
+.consent-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.consent-banner__link {
+  color: var(--consent-link);
+  text-decoration: none;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: calc(var(--consent-border-radius) * 0.75);
+  transition: var(--consent-transition);
+  white-space: nowrap;
+}
+
+.consent-banner__link:hover,
+.consent-banner__link:focus {
+  color: var(--consent-link-hover);
+  text-decoration: underline;
+  outline: 2px solid var(--consent-accent);
+  outline-offset: 2px;
+}
+
+.consent-banner__accept {
+  background: var(--consent-accent);
+  color: #ffffff;
+  border: none;
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--consent-border-radius);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--consent-transition);
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.consent-banner__accept:hover,
+.consent-banner__accept:focus {
+  background: var(--consent-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  outline: 2px solid var(--consent-accent);
+  outline-offset: 2px;
+}
+
+.consent-banner__accept:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 640px) {
+  .consent-banner__container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .consent-banner__content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .consent-banner__icon {
+    font-size: 1.25rem;
+  }
+
+  .consent-banner__title {
+    font-size: 0.9375rem;
+  }
+
+  .consent-banner__message {
+    font-size: 0.875rem;
+  }
+
+  .consent-banner__actions {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .consent-banner__link,
+  .consent-banner__accept {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .consent-banner__accept {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .consent-banner__container {
+    padding: 0.875rem;
+  }
+
+  .consent-banner__message {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .consent-banner,
+  .consent-banner__accept,
+  .consent-banner__link {
+    transition: none;
+    animation: none;
+  }
+
+  .consent-banner {
+    transform: none;
+  }
+
+  .consent-banner__accept:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .consent-banner {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   High Contrast Mode Support
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  .consent-banner {
+    border-width: 2px;
+  }
+
+  .consent-banner__accept {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ============================================
+   Focus Visible (Modern Browsers)
+   ============================================ */
+
+.consent-banner__accept:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.consent-banner__link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Decline (v2) ──────────────────────────────────────────────────────
+   Same size, padding and font as accept. Consent is not freely given if
+   refusing is harder than agreeing, so the only difference is colour
+   weight — never size, never a hidden link, never a greyed-out look. */
+.consent-banner__reject {
+  background: transparent;
+  color: var(--consent-text, #1f2937);
+  border: 1px solid currentColor;
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--consent-border-radius);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--consent-transition);
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.consent-banner__reject:hover,
+.consent-banner__reject:focus {
+  background: rgba(127, 127, 127, 0.12);
+  transform: translateY(-1px);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.consent-banner__reject:active {
+  transform: translateY(0);
+}

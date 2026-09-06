@@ -1,0 +1,120 @@
+---
+title: Prompt-injection protection
+description: How UAPK Gateway contains prompt injection, indirect injection, and tool-hijack attacks against AI agents.
+---
+
+# Prompt-injection protection
+
+A well-crafted sentence in a webpage, an email, or an API response can
+convince a language model to do something its operator never asked for.
+Send the wrong wire. Email the wrong address. Post a secret to an
+attacker's URL. Prompt injection is not a bug in one model — it is the
+default state of every autonomous agent that treats content as
+authority.
+
+UAPK Gateway is built on the opposite assumption. **Model output is a
+proposal. Retrieved content is untrusted. Only the gateway decides
+what happens next.** That assumption, enforced at the action boundary,
+is what lets governed agents run safely in production.
+
+## Attack shapes the gateway catches
+
+- **Direct injection.** The model's own output tries a tool it isn't
+  allowed to call, or a destination outside its policy.
+- **Indirect injection.** A webpage, vector-store document, or upstream
+  API response tells the model to call a tool — and the model complies.
+- **Callback exfiltration.** A prompt-injected agent tries to redirect
+  an approval callback to an attacker-controlled URL, exfiltrating the
+  override token.
+- **SSRF via tool parameters.** The model supplies a URL, header, or
+  path that points at an internal service or a metadata endpoint.
+- **Header and recipient smuggling.** CRLF in an email subject,
+  a hidden `Bcc:` in a recipient list, an `Authorization` header
+  override that replaces the connector's real secret.
+
+Every one of these fails the same way inside UAPK: the gateway
+evaluates the action against a manifest-scoped policy before any
+connector runs, and the connector itself refuses off-allowlist targets
+before it opens a socket.
+
+## How the agent firewall is built
+
+Five invariants, enforced in code, tested per release.
+
+**Model output is a proposal.** Tool calls are validated against the
+agent's manifest-declared tool list. Unknown tools, non-dict params,
+and out-of-allowlist destinations are refused before the connector
+sees them. The default workflow disposition on any denial is `abort`,
+so a single denied step stops the run.
+
+**Content is not authority.** Every response from an external connector
+is tagged with its provenance and wrapped in an untrusted-content
+envelope before it reaches the LLM's next turn. Workflow context
+carries the same tag forward. An optional scrubber strips common
+instruction-injection tokens from external text. The policy engine
+remains the authority — nothing the response says can change what
+the gateway will allow.
+
+**The gateway is the only path out.** The runtime refuses to boot in
+live mode without gateway credentials. There is no silent-ALLOW
+fallback. Every tool call passes `ActionGuard → gateway policy →
+connector` in that order, or it doesn't run.
+
+**Approvals are tightly bound.** Override tokens are single-use, bound
+to the exact action they approve, and scoped to the identity that
+requested them. Approval callbacks post only to hosts the
+organisation has pre-registered — or, for ad-hoc integrations, to URLs
+the caller has signed with their own API key. The callback dispatcher
+refuses internal targets and re-validates destinations at dispatch
+time. Denied callbacks never carry an override token.
+
+**Every decision is auditable.** Each policy outcome, each block, each
+clamp, each scrub is an Ed25519-signed record on a hash-chained log.
+If a control fires, the forensic trail shows it.
+
+## What UAPK enforces today
+
+- Fail-closed recipient-domain allowlist on every SMTP connector.
+- Fail-closed domain allowlist + forward-DNS + private-IP block +
+  DNS-drift guard on every outbound HTTP connector.
+- Method allowlist: `GET / POST / PUT / PATCH / DELETE` only.
+- Header scrub: `Authorization`, `Host`, `Cookie`, `X-Forwarded-*`,
+  `X-Api-Key`, `X-Real-Ip` stripped from agent-supplied headers.
+- Body-size caps on connector responses.
+- Callback-URL allowlist (per organisation) and HMAC-signed-URL
+  alternative for ad-hoc destinations.
+- Untrusted-content envelope wrapping of all external tool output
+  before it reaches the LLM, annotated with origin and tool.
+- Workflow-context provenance propagation between steps.
+- Destination extraction: the gateway sees the real recipient / host /
+  account hoisted out of agent-supplied parameters, not an empty slot.
+- Override tokens: single-use, bound to the specific action they
+  approve, scoped to the requesting identity, expiry-capped.
+- Idempotency-key dedupe on `evaluate` and `execute`: a replay with
+  the same key returns the cached envelope; a different action hash
+  returns `409 Conflict`.
+
+## What we don't claim yet
+
+Being explicit about the gaps is part of the security story.
+
+- Per-tool JSON Schemas at the runtime boundary: on the roadmap. Today
+  the gateway catches off-policy destinations via extraction + policy;
+  a formal schema layer at AgentRunner is the next tightening.
+- Capability-token `max_actions` and `jti` seen-set: on the roadmap.
+  Override tokens are already one-time-use; capability tokens
+  currently rely on expiry + issuer revocation.
+- Cross-entity peer re-evaluation in fleet mode: on the roadmap. If
+  one UAPK entity hands an event to another, the receiving entity's
+  gateway will re-evaluate the payload against its own policy. Not
+  yet enforced end-to-end.
+
+Independent security review and a public threat-model document are
+scheduled for the next release train.
+
+## Reading on
+
+- [Security model](/docs/architecture/security)
+- [Manifest concepts](/docs/concepts/manifest)
+- [Approval workflow](/docs/concepts/approvals)
+- [API reference](/docs/api)

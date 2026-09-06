@@ -1,0 +1,201 @@
+/* ─── Contact Form — uapk.info corporate identity ─────────── */
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--uapk-surface-elevated, #0f172a);
+  border: 1px solid var(--uapk-border, #1e293b);
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .form { padding: 1.5rem; }
+}
+
+/* ─── Row layout ──────────────────────────────────────────── */
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .formRow { grid-template-columns: 1fr; }
+}
+
+/* ─── Field groups ────────────────────────────────────────── */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.formGroup:last-child { margin-bottom: 0; }
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--uapk-text-secondary, #94a3b8);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--ifm-background-color, #06060f);
+  border: 1px solid var(--uapk-border, #1e293b);
+  border-radius: 8px;
+  color: var(--uapk-text-primary, #f1f5f9);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.formGroup select {
+  cursor: pointer;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--ifm-color-primary, #4f46e5);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: var(--uapk-text-secondary, #475569);
+}
+
+.formGroup input:disabled,
+.formGroup select:disabled,
+.formGroup textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Turnstile ───────────────────────────────────────────── */
+.turnstileWrap {
+  margin: 1.25rem 0;
+  min-height: 65px;
+}
+
+/* ─── Error ───────────────────────────────────────────────── */
+.errorMsg {
+  padding: 0.8rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* ─── Submit button ───────────────────────────────────────── */
+.submitBtn {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: var(--ifm-color-primary, #4f46e5);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(79, 70, 229, 0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Privacy note ────────────────────────────────────────── */
+.privacy {
+  text-align: center;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  color: var(--uapk-text-secondary, #475569);
+}
+
+/* ─── Success state ───────────────────────────────────────── */
+.successCard {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--uapk-surface-elevated, #0f172a);
+  border: 1px solid var(--uapk-border, #1e293b);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.successIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.successIcon::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 20px;
+  border: 3px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+
+.successCard h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--uapk-text-primary, #f1f5f9);
+  margin-bottom: 0.5rem;
+}
+
+.successCard p {
+  color: var(--uapk-text-secondary, #94a3b8);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.resetButton {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--uapk-border, #1e293b);
+  border-radius: 8px;
+  color: var(--uapk-text-secondary, #94a3b8);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.resetButton:hover {
+  border-color: var(--ifm-color-primary, #4f46e5);
+  color: var(--ifm-color-primary, #4f46e5);
+}

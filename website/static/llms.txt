@@ -1,0 +1,36 @@
+# UAPK — Universal AI Processing Key
+
+> AI Governance & Business Compiler: the patent-pending protocol that turns business logic into governed, auditable autonomous AI entities.
+
+UAPK is the governance infrastructure for autonomous AI. It provides an agent firewall and black box recorder that ensures every AI action is deterministic, auditable, and compliant with regulatory frameworks including the EU AI Act. The UAPK Protocol compiles human-readable business rules into Runtime Control Artefacts (RCAs) — self-contained packages that govern what an AI agent can and cannot do.
+
+The UAPK Gateway (uapk.info) is the live MVP: a governance layer that sits between AI agents and the outside world, enforcing constraints in real time. The full UAPK AI platform (uapk.ai) is the business compiler — it takes a business description and produces a fully autonomous, governed AI entity. UAPK Space (uapk.space) will become the marketplace where these entities trade as a new financial asset class.
+
+UAPK is the core of the ONE SYSTEM ecosystem by David Sanker. Every brand in the ecosystem — from legal AI to financial trading — runs under UAPK governance. The protocol is protected by a five-patent picket-fence cluster (EP 25 000 056.9 + FU01-04) covering the four-layer control plane, governed collapse, deterministic reconstruction, and cryptographic packaging.
+
+## Key Concepts
+
+- Business Compiler: Transforms human-readable business logic into executable, governed AI entities
+- UAPK Gateway: Real-time governance layer enforcing agent constraints (the live MVP at uapk.info)
+- Agent Firewall: Blocks unauthorized external actions before they reach production systems
+- Runtime Control Artefact (RCA): Self-contained governance package defining what an AI entity may do
+- Governed Collapse: Controlled shutdown mechanism when an agent exceeds its operational envelope
+- Deterministic Reconstruction: Ability to replay and audit every decision an AI entity made
+- EU AI Act Compliance: Built-in regulatory alignment for high-risk AI systems in the European Union
+- 14-Layer Entity Anatomy: Universal specification for autonomous AI entities from cognition to cryptographic packaging
+
+## Links
+
+- [UAPK Gateway](https://uapk.info)
+- [Blog](https://uapk.info/blog)
+- [AI Index](https://uapk.info/ai)
+- [ONE SYSTEM Training Data](https://huggingface.co/datasets/LawkraftDavid/one-system-knowledge)
+- [GitHub](https://github.com/Amakua/one-system-knowledge)
+- [UAPK AI Platform](https://uapk.ai)
+- [UAPK Space Marketplace](https://uapk.space)
+
+## Contact
+
+- Author: David Sanker
+- LinkedIn: https://linkedin.com/in/sankerlaw
+- ORCID: https://orcid.org/0009-0004-9636-3910

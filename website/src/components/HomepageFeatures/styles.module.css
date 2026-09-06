@@ -1,0 +1,89 @@
+/* ─── Features Section ─── */
+.features {
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+  width: 100%;
+}
+
+.featureCard {
+  text-align: center;
+  padding: 1rem 1.5rem;
+}
+
+.featureIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--ifm-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #fff;
+}
+
+.featureTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  color: var(--uapk-text-secondary);
+  line-height: 1.7;
+  min-height: 80px;
+}
+
+.featureLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Testimonials ─── */
+.testimonials {
+  padding: 5rem 0;
+  border-top: 1px solid var(--uapk-border);
+}
+
+.testimonialsTitle {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  color: var(--uapk-text-primary);
+}
+
+.testimonialQuote {
+  font-family: var(--uapk-font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.testimonialAttribution {
+  font-family: var(--ifm-font-family-base);
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--uapk-text-secondary);
+  letter-spacing: 0.01em;
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 4rem 0;
+  }
+
+  .testimonials {
+    padding: 3rem 0;
+  }
+}

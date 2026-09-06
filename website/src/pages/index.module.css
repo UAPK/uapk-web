@@ -1,0 +1,315 @@
+/* ─── Hero ─── */
+.hero {
+  padding: 7rem 0 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, rgba(79, 70, 229, 0.06) 0%, transparent 70%);
+}
+
+[data-theme='dark'] .hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+}
+
+.heroTitle {
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--uapk-text-primary);
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+  font-family: var(--uapk-font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--uapk-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.heroButtons {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroCtaNote {
+  font-size: 0.78rem;
+  color: var(--uapk-text-secondary);
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  opacity: 0.75;
+}
+
+.heroBadges {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--uapk-text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.heroBadgeCheck {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* ─── Sections ─── */
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.sectionAlt {
+  padding: 6rem 0;
+  position: relative;
+  background-color: var(--uapk-surface-subtle);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--uapk-text-primary);
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-family: var(--uapk-font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--uapk-text-secondary);
+  margin-bottom: 3.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--uapk-border);
+  margin: 0 auto 3rem;
+}
+
+/* ─── Code Demo ─── */
+.codeBlock {
+  background: #1a1a2e;
+  color: #d4d4d4;
+  border: 1px solid var(--uapk-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: var(--uapk-font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+[data-theme='dark'] .codeBlock {
+  background: #0d0d14;
+  border-color: #2a2a3a;
+}
+
+.demoExplanation {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.demoExplanation li {
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Comparison Cards ─── */
+.comparisonCard {
+  padding: 2.5rem;
+  border-radius: 12px;
+  height: 100%;
+  border: 1px solid var(--uapk-border);
+  background: var(--uapk-surface-elevated);
+}
+
+.comparisonBefore {
+  border-top: 3px solid #e85d5d;
+}
+
+.comparisonAfter {
+  border-top: 3px solid #34b06a;
+}
+
+.comparisonTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.comparisonTitleBefore {
+  color: #e85d5d;
+}
+
+.comparisonTitleAfter {
+  color: #34b06a;
+}
+
+.comparisonCard ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.comparisonCard li {
+  padding: 0.4rem 0;
+  line-height: 1.6;
+}
+
+/* ─── 47ers Cards ─── */
+.fortySevenCard {
+  padding: 2rem;
+  border: 1px solid var(--uapk-border);
+  border-radius: 12px;
+  height: 100%;
+  background: var(--uapk-surface-elevated);
+  transition: box-shadow 0.2s ease;
+}
+
+.fortySevenCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .fortySevenCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fortySevenCategory {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Why Section ─── */
+.whyNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--uapk-border);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.04em;
+}
+
+[data-theme='dark'] .whyNumber {
+  color: #2a2a3a;
+}
+
+.whyContent {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+.whyCenterText {
+  text-align: center;
+  font-family: var(--uapk-font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  color: var(--uapk-text-secondary);
+}
+
+/* ─── CTA ─── */
+.ctaSection {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--uapk-surface-subtle) 0%, transparent 100%);
+}
+
+.ctaTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.ctaSubtitle {
+  text-align: center;
+  font-family: var(--uapk-font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--uapk-text-secondary);
+  margin-bottom: 3rem;
+}
+
+.ctaLinks {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.05rem;
+}
+
+.ctaLinks a {
+  margin: 0 0.5rem;
+}
+
+/* ─── Responsive ─── */
+@media screen and (max-width: 996px) {
+  .hero {
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .heroTitle {
+    font-size: 2.4rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .section,
+  .sectionAlt {
+    padding: 4rem 0;
+  }
+
+  .ctaSection {
+    padding: 4rem 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroBadges {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+}
