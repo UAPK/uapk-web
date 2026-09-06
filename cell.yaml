@@ -5,4 +5,7 @@ gcp_project: uapk-web-prod
 ports: "9110-9119"
 uapk_sibling: null
 state_path: /srv/state/uapk-web/
-runtime_plane: projects-vm
+# A17 (David, 2026-09-01): uapk-web ist eine UAPK-VM-Cell. Bis 2026-09-06 stand
+# hier projects-vm. C-12 ist an dem Tag aus der Cell-Liste der Projects VM
+# ausgetragen; der Portblock 9110-9119 bleibt dort nur reserviert.
+runtime_plane: uapk-vm
