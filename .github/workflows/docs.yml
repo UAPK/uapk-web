@@ -9,10 +9,12 @@ on:
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# 2026-09-06: Rechte jobweise statt workflowweit (Codex-Befund beim Umzug in ein
+# OEFFENTLICHES Repo). Vorher erbte auch der build-Job `pages: write` und
+# `id-token: write` -- und genau dort laufen `npm ci` mit 1399 Paketen samt
+# Lifecycle-Skripten und `npm run build`. Nicht genannte Scopes stehen bei
+# jobweiser Vergabe auf `none`.
+permissions: {}
 
 concurrency:
   group: "pages"
@@ -21,6 +23,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -50,6 +55,15 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    # Ausliefern nur von main. workflow_dispatch laesst sonst einen beliebigen
+    # Branch ausrollen, ohne dass der Stand je durch main gelaufen waere -- bei
+    # der Startseite des wichtigsten Produkts ist das die Bremse wert, auch wenn
+    # heute nur ein einziges Konto Schreibzugriff hat.
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
