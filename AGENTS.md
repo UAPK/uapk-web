@@ -9,6 +9,12 @@ Toolneutrale Hauptautoritaet dieser Cell. CLAUDE.md ergaenzt nur Claude-Spezifis
   Nichts hineinlegen, was nicht oeffentlich sein darf: keine Implementierung, keine
   Manifeste, keine internen Strategiepapiere. Genau daran ist die Vorgaenger-Loesung
   gescheitert.
+- **Codex-Pruefspuren unter `docs/_audit/` gehoeren hier redigiert hinein.** Die Werkzeuge
+  schreiben den lokalen Arbeitspfad (samt Benutzername) und den eingebetteten
+  Reviewer-Prompt mit in die Datei; beides ist interner Betriebskontext. Vor dem Commit:
+  Pfad durch den Repo-Namen ersetzen, Prompt- und Auftragsblock entfernen, und einen
+  Statuskopf voranstellen, der offene von behobenen Befunden trennt -- eine Pruefspur ohne
+  diese Trennung liest sich von aussen wie eine Schwachstellenliste.
 - Produktion laeuft aus `/srv/releases/<digest>/`, nie aus dem Worktree (Norm §4.2)
 - Keine Cross-Cell-Pfade, keine geteilten Credentials (Norm §10)
 - dotenv-Werte, Schluessel, Kundendaten: niemals committen
