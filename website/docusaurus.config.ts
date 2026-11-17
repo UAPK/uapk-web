@@ -197,6 +197,11 @@ const config: Config = {
           position: 'left'
         },
         {
+          to: '/value',
+          label: 'Value',
+          position: 'left'
+        },
+        {
           label: 'Integrations',
           position: 'left',
           type: 'dropdown',
